@@ -1,10 +1,11 @@
-import Header from "../components/Header";
+import Header from '../components/Header';
+import Layout from '../components/Layout';
 
 export default function Example() {
   return (
-    <>
-      <Header title="Next.js & React" />
-      <Header title="Learning next.js & react" />
-    </>
+    <Layout title='Understanding JSX'>
+      <Header title='Next.js & React' />
+      <Header title='Learning next.js & react' />
+    </Layout>
   );
 }
