@@ -15,6 +15,11 @@ export default function Home() {
       <Navigator text='Example' destiny='/example' color='#9400d3' />
       <Navigator text='JSX' destiny='/jsx' color='crimson' />
       <Navigator text='Navigation #01' destiny='/navigation' color='green' />
+      <Navigator
+        text='Navigation #02'
+        destiny='/client/sp-01/123'
+        color='blue'
+      />
     </div>
   );
 }
