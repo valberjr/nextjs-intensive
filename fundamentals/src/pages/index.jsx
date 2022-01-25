@@ -11,7 +11,7 @@ export default function Home() {
         height: '100vh',
       }}
     >
-      <Navigator text='Estiloso' destiny='/estiloso' />
+      <Navigator text='Stylish' destiny='/stylish' />
       <Navigator text='Example' destiny='/example' color='#9400d3' />
       <Navigator text='JSX' destiny='/jsx' color='crimson' />
     </div>

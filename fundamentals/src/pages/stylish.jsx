@@ -1,7 +1,7 @@
-import styles from "../styles/Estiloso.module.css";
+import styles from "../styles/Stylish.module.css";
 import Layout from "../components/Layout";
 
-export default function Estiloso() {
+export default function Stylish() {
   return (
     <Layout title='Modularized CSS Example'>
       <div className={styles.purple}>
