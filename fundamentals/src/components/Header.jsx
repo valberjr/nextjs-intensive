@@ -1,7 +1,8 @@
-export default function Header() {
-    return (
-        <header>
-            <h1>Nextjs and React Fundamentals</h1>
-        </header>       
-    )
+export default function Header(props) {
+    // props is readonly
+  return (
+    <header>
+      <h1>{props.title}</h1>
+    </header>
+  );
 }
