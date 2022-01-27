@@ -20,6 +20,7 @@ export default function Home() {
         destiny='/client/sp-01/123'
         color='blue'
       />
+      <Navigator text='Static Content' destiny='/static' color='#fa054a' />
     </div>
   );
 }
