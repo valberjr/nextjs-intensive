@@ -10,6 +10,13 @@ export default function Home() {
     new Client('Pedro', 44, '4'),
   ];
 
+  function selectedClient(client: Client) {
+    console.log(client.name);
+  }
+  function deletedClient(client: Client) {
+    console.log(`deleting ... ${client.name}`);
+  }
+
   return (
     <div
       className={`
@@ -19,7 +26,11 @@ export default function Home() {
     `}
     >
       <Layout title="Simple Registration">
-        <Table clients={clients}></Table>
+        <Table
+          clients={clients}
+          selectedClient={selectedClient}
+          deletedClient={deletedClient}
+        />
       </Layout>
     </div>
   );
