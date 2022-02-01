@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Button from '../components/Button';
 import Form from '../components/Form';
 import Layout from '../components/Layout';
@@ -15,9 +16,16 @@ export default function Home() {
     function selectedClient(client: Client) {
         console.log(client.name);
     }
+
     function deletedClient(client: Client) {
         console.log(`deleting ... ${client.name}`);
     }
+
+    function saveClient(client: Client) {
+        console.log(client);
+    }
+
+    const [visible, setVisible] = useState<'table' | 'form'>('table');
 
     return (
         <div
@@ -28,17 +36,30 @@ export default function Home() {
         `}
         >
             <Layout title="Simple Registration">
-                <div className="flex justify-end">
-                    <Button color="green" className="mb-4">
-                        New Client
-                    </Button>
-                </div>
-                <Table
-                    clients={clients}
-                    selectedClient={selectedClient}
-                    deletedClient={deletedClient}
-                />
-                <Form client={clients[2]}></Form>
+                {visible === 'table' ? (
+                    <>
+                        <div className="flex justify-end">
+                            <Button
+                                color="green"
+                                className="mb-4"
+                                onClick={() => setVisible('form')}
+                            >
+                                New Client
+                            </Button>
+                        </div>
+                        <Table
+                            clients={clients}
+                            selectedClient={selectedClient}
+                            deletedClient={deletedClient}
+                        />
+                    </>
+                ) : (
+                    <Form
+                        client={clients[2]}
+                        clientChanged={saveClient}
+                        cancelled={() => setVisible('table')}
+                    />
+                )}
             </Layout>
         </div>
     );
