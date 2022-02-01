@@ -6,6 +6,9 @@ import Table from '../components/Table';
 import Client from '../core/Client';
 
 export default function Home() {
+    const [client, setClient] = useState<Client>(Client.empty());
+    const [visible, setVisible] = useState<'table' | 'form'>('table');
+
     const clients = [
         new Client('Ana', 34, '1'),
         new Client('Bia', 45, '2'),
@@ -14,7 +17,8 @@ export default function Home() {
     ];
 
     function selectedClient(client: Client) {
-        console.log(client.name);
+        setClient(client);
+        setVisible('form');
     }
 
     function deletedClient(client: Client) {
@@ -22,10 +26,13 @@ export default function Home() {
     }
 
     function saveClient(client: Client) {
-        console.log(client);
+        setVisible('table');
     }
 
-    const [visible, setVisible] = useState<'table' | 'form'>('table');
+    function newClient() {
+        setClient(Client.empty());
+        setVisible('form');
+    }
 
     return (
         <div
@@ -42,7 +49,7 @@ export default function Home() {
                             <Button
                                 color="green"
                                 className="mb-4"
-                                onClick={() => setVisible('form')}
+                                onClick={newClient}
                             >
                                 New Client
                             </Button>
@@ -55,7 +62,7 @@ export default function Home() {
                     </>
                 ) : (
                     <Form
-                        client={clients[2]}
+                        client={client}
                         clientChanged={saveClient}
                         cancelled={() => setVisible('table')}
                     />
