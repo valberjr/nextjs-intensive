@@ -1,0 +1,10 @@
+## Firebase Integration
+
+- create an file **.env.local** in the root project
+- add content bellow:
+
+```
+NEXT_PUBLIC_FIREBASE_API_KEY=YOUR_FIREBASE_API_KEY
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=YOUR_FIREBASE_AUTH_DOMAIN
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=YOUR_FIREBASE_PROJECT_ID
+```
