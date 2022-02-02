@@ -1,47 +1,20 @@
-import { useEffect, useState } from 'react';
 import Button from '../components/Button';
 import Form from '../components/Form';
 import Layout from '../components/Layout';
 import Table from '../components/Table';
-import Client from '../core/Client';
-import ClientRepository from '../core/ClientRepository';
-import ClientCollection from '../firebase/db/ClientCollection';
+import UseClients from '../hooks/useClients';
 
 export default function Home() {
-    const repo: ClientRepository = new ClientCollection();
-
-    const [client, setClient] = useState<Client>(Client.empty());
-    const [clients, setClients] = useState<Client[]>([]);
-    const [visible, setVisible] = useState<'table' | 'form'>('table');
-
-    useEffect(getAll, []);
-
-    function getAll() {
-        repo.findAll().then((clients) => {
-            setClients(clients);
-            setVisible('table');
-        });
-    }
-
-    function selectedClient(client: Client) {
-        setClient(client);
-        setVisible('form');
-    }
-
-    async function deletedClient(client: Client) {
-        await repo.delete(client);
-        getAll();
-    }
-
-    async function saveClient(client: Client) {
-        await repo.save(client);
-        getAll();
-    }
-
-    function newClient() {
-        setClient(Client.empty());
-        setVisible('form');
-    }
+    const {
+        client,
+        clients,
+        newClient,
+        saveClient,
+        selectClient,
+        deleteClient,
+        visibleTable,
+        displayTable,
+    } = UseClients();
 
     return (
         <div
@@ -52,7 +25,7 @@ export default function Home() {
         `}
         >
             <Layout title="Simple Registration">
-                {visible === 'table' ? (
+                {visibleTable ? (
                     <>
                         <div className="flex justify-end">
                             <Button
@@ -65,15 +38,15 @@ export default function Home() {
                         </div>
                         <Table
                             clients={clients}
-                            selectedClient={selectedClient}
-                            deletedClient={deletedClient}
+                            selectedClient={selectClient}
+                            deletedClient={deleteClient}
                         />
                     </>
                 ) : (
                     <Form
                         client={client}
                         clientChanged={saveClient}
-                        cancelled={() => setVisible('table')}
+                        cancelled={displayTable}
                     />
                 )}
             </Layout>
