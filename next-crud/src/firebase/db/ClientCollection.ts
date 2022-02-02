@@ -34,7 +34,7 @@ export default class ClientCollection implements ClientRepository {
         return this.#collection().doc(client.id).delete();
     }
 
-    async findAll(client: Client): Promise<Client[]> {
+    async findAll(): Promise<Client[]> {
         const query = await this.#collection().get();
         return query.docs.map((doc) => doc.data()) ?? [];
     }
